@@ -3,18 +3,36 @@
 #include <cmath>
 #include "shared_types.h"
 
+// Прототипи функцій студентів
 std::unique_ptr<Result> calculateA(std::shared_ptr<const InputData> data);
 std::unique_ptr<Result> calculateB(std::shared_ptr<const InputData> data);
 
 int main() {
-    auto data = std::make_shared<const InputData>(InputData{
-        [](double x) { return x * x; },
-        0.0,
-        2.0,
-        1000
-    });
+    // 1. Створюємо об'єкт із вхідними даними
+    auto input = std::make_shared<InputData>();
+    input->f = [](double x) { return std::sin(x); }; // Інтегруємо f(x) = sin(x)
+    input->a = 0.0;
+    input->b = 3.14159265358979323846;
+    input->n = 100;
 
-    std::cout << "--- Integration comparison ---" << std::endl;
+    std::cout << "=== Numerical Integration Project ===" << std::endl;
+
+    // 2. Виклик вашої функції (Student A - метод Сімпсона)
+    auto resultA = calculateA(input);
+    if (resultA) {
+        std::cout << "[Student A] Simpson method result: " << resultA->value 
+                  << " (Estimated error: " << resultA->error << ")" << std::endl;
+    } else {
+        std::cout << "[Student A] Function not implemented yet." << std::endl;
+    }
+
+    // 3. Виклик функції Студента Б (поки заглушка)
+    auto resultB = calculateB(input);
+    if (resultB) {
+        std::cout << "[Student B] Result: " << resultB->value << std::endl;
+    } else {
+        std::cout << "[Student B] Function not implemented yet." << std::endl;
+    }
 
     return 0;
 }
