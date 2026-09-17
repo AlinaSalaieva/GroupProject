@@ -14,7 +14,7 @@ std::unique_ptr<Result> calculateB(std::shared_ptr<const InputData> data) {
         double x = data->a + i * h;
         sum += data->f(x);
     }
-    double integral_n = sum * h;
+    double integral_n = h * sum;
 
     int n2 = data->n / 2;
     if (n2 <= 0) {
@@ -28,7 +28,7 @@ std::unique_ptr<Result> calculateB(std::shared_ptr<const InputData> data) {
         double x = data->a + i * h2;
         sum2 += data->f(x);
     }
-    double integral_n2 = sum2 * h2;
+    double integral_n2 = h2 * sum2;
 
     double error_estimate = std::abs(integral_n - integral_n2) / 3.0;
 
