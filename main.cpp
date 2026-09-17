@@ -15,10 +15,20 @@ int main() {
 
     std::cout << "=== Numerical Integration Project ===" << std::endl;
 
+    auto resultA = calculateA(input);
+    if (resultA) {
+        auto [valueA, errorA] = *resultA;
+        std::cout << "[Student A] Simpson method result: " << valueA
+            << " (Estimated error: " << errorA << ")" << std::endl;
+    }
+    else {
+        std::cout << "[Student A] Function not implemented yet." << std::endl;
+    }
+
     auto resultB = calculateB(input);
     if (resultB) {
         auto [valueB, errorB] = *resultB;
-        std::cout << "[Student B] Result: " << valueB
+        std::cout << "[Student B] Trapezoidal method result: " << valueB
             << " (Estimated error: " << errorB << ")" << std::endl;
     }
     else {
